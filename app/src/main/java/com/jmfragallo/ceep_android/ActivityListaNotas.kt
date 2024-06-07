@@ -3,6 +3,7 @@ package com.jmfragallo.ceep_android
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ListView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jmfragallo.ceep_android.dao.NotaDAO
 import com.jmfragallo.ceep_android.model.Nota
@@ -22,7 +23,9 @@ class ActivityListaNotas : AppCompatActivity() {
         }
 
         val todasNotas: List<Nota> = dao.todos()
-        listaNotas.adapter = ListaNotaAdapter(todasNotas)
+        listaNotas.adapter = ListaNotaAdapter(this, todasNotas)
+        val l: LinearLayoutManager = LinearLayoutManager(this)
+        listaNotas.layoutManager = l
 
         dao.insere("Primeira Nota")
 
